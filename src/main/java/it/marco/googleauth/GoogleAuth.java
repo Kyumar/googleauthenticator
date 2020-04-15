@@ -56,8 +56,8 @@ public class GoogleAuth {
      * @param actCode
      * @return if the actCode (param) it's the same of the code of secretKey'code
      */
-    public boolean compareCode(String actCode) {
-        String code = getCode(secureKey.getKey());
+    public boolean compareCode(String key, String actCode) {
+        String code = getCode(key);
         return code.equals(actCode);
     }
 
