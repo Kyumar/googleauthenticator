@@ -4,6 +4,7 @@ import de.taimos.totp.TOTP;
 import it.marco.googleauth.utils.BarCode;
 import it.marco.googleauth.utils.SecureKey;
 import lombok.Getter;
+import lombok.Setter;
 import org.apache.commons.codec.binary.Base32;
 import org.apache.commons.codec.binary.Hex;
 
@@ -16,18 +17,15 @@ public class GoogleAuth {
     /**
      * SecureKey object to save the key generated.
      */
-    @Getter
+    @Getter @Setter
     private SecureKey secureKey;
 
     /**
      * BarCode object
      */
-    @Getter
+    @Getter @Setter
     private BarCode barCode;
 
-    public GoogleAuth(){
-        secureKey = new SecureKey(createSecretKey());
-    }
 
     /**
      * Generate a secretKey codificated by String base32

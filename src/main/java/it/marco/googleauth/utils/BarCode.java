@@ -8,13 +8,13 @@ import lombok.Setter;
 public class BarCode {
 
     /**
-     *
+     * SecureKey
      */
     @Getter @Setter
     private SecureKey secureKey;
 
     /**
-     *
+     * companyName and user
      */
     @Getter @Setter
     private String companyName, user;
