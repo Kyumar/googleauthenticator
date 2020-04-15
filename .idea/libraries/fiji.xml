@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="fiji">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Downloads/fiji.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/Downloads/fiji.jar!/" />
+    </SOURCES>
+  </library>
+</component>
