@@ -61,22 +61,6 @@ public class GoogleAuth {
     }
 
     /**
-     * Receive bar code data from google, requires special format, this is the method to generate this data.
-     * @param user id in system, username or email
-     * @return barcode
-     */
-    public String getGoogleAuthBarCode(String user){
-        try {
-            barCode = new BarCode(secureKey, user);
-            return "otpath://totp/"
-                    + URLEncoder.encode( user, "UTF-8").replace("+", "%20")
-                    + "?secret=" + URLEncoder.encode(secureKey.getKey(), "UTF-8").replace("+", "%20");
-        } catch (UnsupportedEncodingException e) {
-            throw new IllegalStateException(e);
-        }
-    }
-
-    /**
      * display code generated in console every 30 seconds, should be synchronized with code displayed in Google Authenticator app.
      * @param secretKey
      */
