@@ -1,6 +1,6 @@
 package it.marco.googleauth;
 
-import de.taimos.totp.TOTP;
+import it.marco.googleauth.codes.TOTP;
 import it.marco.googleauth.utils.BarCode;
 import it.marco.googleauth.utils.SecureKey;
 import lombok.Getter;
@@ -25,7 +25,6 @@ public class GoogleAuth {
      */
     @Getter @Setter
     private BarCode barCode;
-
 
     /**
      * Generate a secretKey codificated by String base32
@@ -81,6 +80,7 @@ public class GoogleAuth {
      * display code generated in console every 30 seconds, should be synchronized with code displayed in Google Authenticator app.
      * @param secretKey
      */
+
     public void syncCodeStamp(String secretKey){
         String lastCode = null;
         while (true) {
@@ -90,5 +90,4 @@ public class GoogleAuth {
             lastCode = code;
         }
     }
-
 }
