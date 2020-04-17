@@ -52,7 +52,6 @@ public class BarCode {
 
         if(object != null && object instanceof BarCode){
             BarCode barCode = (BarCode) object;
-
             if(barCode.companyName.equals(companyName) && barCode.user.equals(user) && barCode.secureKey.equals(secureKey)) state = true;
         }
 

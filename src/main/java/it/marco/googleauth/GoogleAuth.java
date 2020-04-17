@@ -2,14 +2,13 @@ package it.marco.googleauth;
 
 import it.marco.googleauth.codes.TOTP;
 import it.marco.googleauth.utils.BarCode;
+import it.marco.googleauth.utils.Code;
 import it.marco.googleauth.utils.SecureKey;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.commons.codec.binary.Base32;
 import org.apache.commons.codec.binary.Hex;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.security.SecureRandom;
 
 public class GoogleAuth {
@@ -20,6 +19,9 @@ public class GoogleAuth {
     @Getter @Setter
     private SecureKey secureKey;
 
+    @Getter @Setter
+    private Code code;
+
     /**
      * BarCode object
      */
@@ -27,7 +29,20 @@ public class GoogleAuth {
     private BarCode barCode;
 
     /**
+     * totp declaration
+     */
+    private final TOTP totp;
+
+    /**
+     * instantiate TOTP
+     */
+    public GoogleAuth(){
+        totp = new TOTP();
+    }
+
+    /**
      * Generate a secretKey codificated by String base32
+     * and save them to SecureKey object
      * @return secretKey generated.
      */
     public String createSecretKey() {
@@ -35,6 +50,7 @@ public class GoogleAuth {
         byte[] bytes = new byte[20];
         secureRandom.nextBytes(bytes);
         Base32 base32 = new Base32();
+        secureKey = new SecureKey(base32.encodeToString(bytes));
         return base32.encodeToString(bytes);
     }
 
@@ -47,7 +63,7 @@ public class GoogleAuth {
         Base32 base32 = new Base32();
         byte[] bytes = base32.decode(secretKey);
         String hexKey = Hex.encodeHexString(bytes);
-        return TOTP.getOTP(hexKey);
+        return totp.getOTP(hexKey);
     }
 
     /**

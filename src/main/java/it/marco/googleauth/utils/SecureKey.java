@@ -32,7 +32,6 @@ public class SecureKey {
 
         if(object instanceof SecureKey && object != null){
             SecureKey secureKey = (SecureKey) object;
-
             if(secureKey.key.equalsIgnoreCase(key)) state = true;
         }
 

@@ -7,6 +7,9 @@ import java.security.GeneralSecurityException;
 
 public class TOTP {
 
+    /**
+     * HmadSHA1 algorithm
+     */
     private static final String HMAC_SHA1 = "HmacSHA1";
 
     /**
@@ -15,7 +18,7 @@ public class TOTP {
      * @param key secureKey
      * @return a String
      */
-    public static String getOTP(String key){
+    public String getOTP(String key){
         return getOTP(getStep(), key);
     }
 
@@ -26,7 +29,7 @@ public class TOTP {
      * @param key the secureKey
      * @return a String
      */
-    private static String getOTP(long step, String key) {
+    private String getOTP(long step, String key) {
         StringBuilder steps = new StringBuilder(Long.toHexString(step).toUpperCase());
         while (steps.length() < 16) {
             steps.insert(0, "0");
@@ -45,6 +48,7 @@ public class TOTP {
         while (result.length() < 6) {
             result.insert(0, "0");
         }
+
         return result.toString();
     }
 
@@ -54,7 +58,7 @@ public class TOTP {
      * @param string the string to encode
      * @return array of byte
      */
-    private static byte[] hexStr2Bytes(String string) {
+    private byte[] hexStr2Bytes(String string) {
         if ((string.length() % 2) != 0)
             throw new IllegalArgumentException("String must be contain even number of characters");
 
@@ -73,7 +77,7 @@ public class TOTP {
      * @param keyBytes   the bytes to use for the HMAC key
      * @param text       the message or text to be authenticated (the code).
      */
-    private static byte[] hmac_sha1(byte[] keyBytes, byte[] text) {
+    private byte[] hmac_sha1(byte[] keyBytes, byte[] text) {
         try {
             Mac hmac = Mac.getInstance(HMAC_SHA1);
             SecretKeySpec macKey = new SecretKeySpec(keyBytes, "RAW");
@@ -88,7 +92,7 @@ public class TOTP {
      * This method get currentTimeMillis divided by 30000, it returns 30 (seconds)
      * @return 30s
      */
-    private static long getStep(){
-        return System.currentTimeMillis() / 30000;
+    private long getStep(){
+        return System.currentTimeMillis() / (30 * 1000);
     }
 }
