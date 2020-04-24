@@ -13,7 +13,7 @@ Include GoogleAuthenticator in your project:
   <dependency>
         <groupId>com.github.Kyumar</groupId>
 	<artifactId>googleauthenticator</artifactId>
-	<version>-SNAPSHOT</version>
+	<version>dd05f0c300</version>
   </dependency>
 ```
 
