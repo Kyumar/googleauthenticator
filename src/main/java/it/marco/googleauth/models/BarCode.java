@@ -1,4 +1,4 @@
-package it.marco.googleauth.utils;
+package it.marco.googleauth.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

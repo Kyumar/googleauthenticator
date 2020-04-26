@@ -1,4 +1,4 @@
-package it.marco.tests;
+package it.marco.example;
 
 import it.marco.googleauth.GoogleAuth;
 

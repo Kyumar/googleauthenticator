@@ -1,9 +1,9 @@
 package it.marco.googleauth;
 
 import it.marco.googleauth.codes.TOTP;
-import it.marco.googleauth.utils.BarCode;
-import it.marco.googleauth.utils.Code;
-import it.marco.googleauth.utils.SecureKey;
+import it.marco.googleauth.models.BarCode;
+import it.marco.googleauth.models.Code;
+import it.marco.googleauth.models.SecureKey;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.commons.codec.binary.Base32;

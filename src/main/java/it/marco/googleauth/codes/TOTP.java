@@ -38,10 +38,14 @@ public class TOTP {
         byte[] msg = hexStr2Bytes(steps.toString());
         byte[] k = hexStr2Bytes(key);
 
-        byte[] hash = hmac_sha1(k, msg);
+        byte[] hmacComputedHash = hmac_sha1(k, msg);
 
-        int offset = hash[hash.length - 1] & 0xf;
-        int binary = ((hash[offset] & 0x7f) << 24) | ((hash[offset + 1] & 0xff) << 16) | ((hash[offset + 2] & 0xff) << 8) | (hash[offset + 3] & 0xff);
+        int offset = hmacComputedHash[hmacComputedHash.length - 1] & 0xf;
+        int binary = ((hmacComputedHash[offset] & 0x7f) << 24)
+                | ((hmacComputedHash[offset + 1] & 0xff) << 16)
+                | ((hmacComputedHash[offset + 2] & 0xff) << 8)
+                | (hmacComputedHash[offset + 3] & 0xff);
+
         int otp = binary % 1000000;
 
         StringBuilder result = new StringBuilder(Integer.toString(otp));
@@ -62,10 +66,11 @@ public class TOTP {
         if ((string.length() % 2) != 0)
             throw new IllegalArgumentException("String must be contain even number of characters");
 
+        int len = string.length();
         byte[] result = new byte[string.length() / 2];
-        char[] enc = string.toCharArray();
-        for (int i = 0; i < enc.length; i += 2) {
-            result[i/2] = (byte) Integer.parseInt(String.valueOf(enc[i]) + enc[i + 1], 16);
+        for (int i = 0; i < len; i += 2) {
+            result[i / 2] = (byte) ((Character.digit(string.charAt(i), 16) << 4)
+            + Character.digit(string.charAt(i+1), 16));
         }
         return result;
     }
