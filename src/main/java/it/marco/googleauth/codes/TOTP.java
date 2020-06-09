@@ -19,7 +19,7 @@ public class TOTP {
      * @return a String
      */
     public String getOTP(String key){
-        return getOTP(getStep(), key);
+        return getOTP(System.currentTimeMillis() / (30 * 1000), key);
     }
 
     /**
@@ -91,13 +91,5 @@ public class TOTP {
         } catch (GeneralSecurityException gse) {
             throw new UndeclaredThrowableException(gse);
         }
-    }
-
-    /**
-     * This method get currentTimeMillis divided by 30000, it returns 30 (seconds)
-     * @return 30s
-     */
-    private long getStep(){
-        return System.currentTimeMillis() / (30 * 1000);
     }
 }

@@ -85,7 +85,7 @@ public class GoogleAuth {
         String lastCode = null;
         while (true) {
             String code = getCode(secretKey);
-            if (!code.equals(lastCode))System.out.println(code);
+            if (!code.equals(lastCode)) System.out.println(code);
 
             lastCode = code;
         }
