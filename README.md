@@ -17,6 +17,10 @@ Include GoogleAuthenticator in your project:
   </dependency>
 ```
 
+project using this lib (mine)
+
+spigot plugin: https://www.mc-market.org/resources/17637/
+
 ## TO-DO List
 * HOTP - **WIP**
 * QRCode - **WIP**
